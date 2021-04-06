@@ -25,11 +25,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ps1.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ps1.py">
+      <file leaf-file-name="ps1a.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ps1a.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
-              <caret line="20" column="52" lean-forward="false" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
+              <caret line="20" column="52" lean-forward="true" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -120,7 +120,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Summer6.0001" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ps1.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ps1a.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -313,7 +313,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/ps1.py</url>
+          <url>file://$PROJECT_DIR$/ps1a.py</url>
           <line>15</line>
         </line-breakpoint>
       </breakpoints>
@@ -330,10 +330,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ps1.py">
+    <entry file="file://$PROJECT_DIR$/ps1a.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
-          <caret line="20" column="52" lean-forward="false" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
+          <caret line="20" column="52" lean-forward="true" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
           <folding />
         </state>
       </provider>
