@@ -14,18 +14,26 @@ steps = 0
 
 # asking for user input
 annual_salary = float(input("Enter your annual salary: $"))
+target = portion_down_payment * annual_salary
 
-while abs(current_savings - portion_down_payment * total_cost) > threshold:
+while abs(current_savings - target) > threshold:
     for i in range(1,36):
-        current_savings += current_savings * r / 12     # calculate interest
-        if i % 6 == 0:  # twice a year, give the semi-annual raise
-            annual_salary *= semi_annual_salary_raise
-        current_savings += guess * (annual_salary / 12)     # add new portion of salary
-    if current_savings + 100 < portion_down_payment * total_cost:
-        high = guess
-    if current_savings - 100 > portion_down_payment * total_cost:
+        if months > 0 and months % 6 == 0:
+            annual_salary += annual_salary * semi_annual_salary_raise
+        current_savings += current_savings * r / 12
+        current_savings += (guess/10000) * (annual_salary / 12)
+
+        # current_savings += current_savings * r / 12     # calculate interest
+        # if i % 6 == 0:  # twice a year, give the semi-annual raise
+        #     annual_salary += annual_salary * semi_annual_salary_raise
+        # current_savings += (guess/10000) * (annual_salary / 12)     # add new portion of salary
+    print("amount raised w this guess is:" + str(current_savings))
+    if current_savings < target - threshold:
         low = guess
+    if current_savings > target + threshold:
+        high = guess
     guess = (low + high) / 2
+    print("guess ", guess)
     steps += 1
 
-print("Best savings rate:" + guess/10000)
+# print("Best savings rate:" + guess/10000)
