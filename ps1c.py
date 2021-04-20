@@ -1,5 +1,5 @@
 # setting up variables
-total_cost = 1000000  # cost of dream home, fixed
+total_cost = 1000000  # cost of home, fixed
 portion_down_payment = 0.25 # must pay 25% of total cost upfront
 current_savings = 0
 r = 0.04 # rate of return on investment
@@ -13,27 +13,31 @@ guess = high/2
 steps = 0
 
 # asking for user input
-annual_salary = float(input("Enter your annual salary: $"))
-target = portion_down_payment * annual_salary
+starting_salary = float(input("Enter your annual salary: $"))
+target = portion_down_payment * total_cost
 
-while abs(current_savings - target) > threshold:
-    for i in range(1,36):
-        if months > 0 and months % 6 == 0:
+while abs(current_savings - target) > threshold and steps < 20:
+    annual_salary = starting_salary
+    # computes the amount saved for a guess
+    for i in range(1,37):
+        if i > 0 and i % 6 == 0:
             annual_salary += annual_salary * semi_annual_salary_raise
         current_savings += current_savings * r / 12
         current_savings += (guess/10000) * (annual_salary / 12)
+    print("guess", guess, " $", current_savings)
 
-        # current_savings += current_savings * r / 12     # calculate interest
-        # if i % 6 == 0:  # twice a year, give the semi-annual raise
-        #     annual_salary += annual_salary * semi_annual_salary_raise
-        # current_savings += (guess/10000) * (annual_salary / 12)     # add new portion of salary
-    print("amount raised w this guess is:" + str(current_savings))
     if current_savings < target - threshold:
         low = guess
-    if current_savings > target + threshold:
+    elif current_savings > target + threshold: # current rate saves too much money
         high = guess
-    guess = (low + high) / 2
+    else:
+        print("Best savings rate: " + str(guess / 10000))
+        break
+    guess = int((low + high) / 2)
     print("guess ", guess)
     steps += 1
+    current_savings = 0
 
-# print("Best savings rate:" + guess/10000)
+if steps >= 19:
+    print("Couldn't come up with anything")
+print("Steps: ", steps)
