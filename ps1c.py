@@ -16,7 +16,7 @@ steps = 0
 starting_salary = float(input("Enter your annual salary: $"))
 target = portion_down_payment * total_cost
 
-while abs(current_savings - target) > threshold and steps < 20:
+while abs(current_savings - target) > threshold and guess < 9999:
     annual_salary = starting_salary
     # computes the amount saved for a guess
     for i in range(1,37):
@@ -24,7 +24,6 @@ while abs(current_savings - target) > threshold and steps < 20:
             annual_salary += annual_salary * semi_annual_salary_raise
         current_savings += current_savings * r / 12
         current_savings += (guess/10000) * (annual_salary / 12)
-    print("guess", guess, " $", current_savings)
 
     if current_savings < target - threshold:
         low = guess
@@ -34,10 +33,10 @@ while abs(current_savings - target) > threshold and steps < 20:
         print("Best savings rate: " + str(guess / 10000))
         break
     guess = int((low + high) / 2)
-    print("guess ", guess)
     steps += 1
     current_savings = 0
 
-if steps >= 19:
-    print("Couldn't come up with anything")
-print("Steps: ", steps)
+if guess < 9999: # if loop ended with valid rate
+    print("Steps in bisection search:", steps)
+else:
+    print("It is not possible to pay the down payment in three years.")
