@@ -61,9 +61,19 @@ def is_word_guessed(secret_word, letters_guessed):
       False otherwise
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+    guessed = True
+    for letter in secret_word:
+        for item in letters_guessed:
+            if letter == item:
+                found_current = True
+                break
+            else:
+                found_current = False
+        if not found_current:
+            guessed = False
+    return guessed
 
-
+print("guessed:", is_word_guessed("the", ["t", "h", "h"]))
 
 def get_guessed_word(secret_word, letters_guessed):
     '''
