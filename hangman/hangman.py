@@ -13,6 +13,7 @@ import random
 import string
 
 WORDLIST_FILENAME = "words.txt"
+import string
 
 
 def load_words():
@@ -89,13 +90,7 @@ def get_guessed_word(secret_word, letters_guessed):
                 # print(letter, secret_word.find(letter))
                 output = output[0: 2 * secret_word.find(letter)] + \
                          letter + output[2 * secret_word.find(letter) + 1: len(output)]
-
-    print(output)
-
-
-get_guessed_word("query", ["w", "r", "t"])
-
-
+    return output
 
 
 def get_available_letters(letters_guessed):
@@ -104,10 +99,13 @@ def get_available_letters(letters_guessed):
     returns: string (of letters), comprised of letters that represents which letters have not
       yet been guessed.
     '''
+    output = string.ascii_lowercase
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
-    
-    
+    for letter in letters_guessed:
+        print(letter, output.find(letter))
+        output = output[0: output.find(letter)] + output[output.find(letter) + 1: len(output)]
+    return output
+
 
 def hangman(secret_word):
     '''
