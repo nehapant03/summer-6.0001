@@ -84,12 +84,15 @@ def get_guessed_word(secret_word, letters_guessed):
     # FILL IN YOUR CODE HERE AND DELETE "pass"
     for i in range(0, len(secret_word)):
         output += "_ "
-    for letter in secret_word:
-        for item in letters_guessed:
+    for item in letters_guessed:
+        for letter in secret_word:
             if item == letter:
                 # print(letter, secret_word.find(letter))
-                output = output[0: 2 * secret_word.find(letter)] + \
-                         letter + output[2 * secret_word.find(letter) + 1: len(output)]
+                index = secret_word.find(letter)
+                if index != len(secret_word):
+                    output = output[0: 2 * index] + letter + output[2 * index + 1: len(output)]
+                else:
+                    output = output[0: 2 * index] + letter
     return output
 
 
@@ -102,8 +105,9 @@ def get_available_letters(letters_guessed):
     output = string.ascii_lowercase
     # FILL IN YOUR CODE HERE AND DELETE "pass"
     for letter in letters_guessed:
-        print(letter, output.find(letter))
-        output = output[0: output.find(letter)] + output[output.find(letter) + 1: len(output)]
+        position = output.find(letter)
+        if position > 0:
+            output = output[0: position] + output[position + 1: len(output)]
     return output
 
 
@@ -133,7 +137,27 @@ def hangman(secret_word):
     Follows the other limitations detailed in the problem write-up.
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
-    pass
+
+    num_of_guesses = 6 # will decrease if letter isn't in word
+    print("")
+    print("Welcome to the game Hangman!")
+    print("I am thinking of a word that is", len(secret_word), "letters long.")
+    print(get_guessed_word(secret_word, [])) # prints out the blanks
+    print("You have", num_of_guesses, "guesses left.")
+    letters_guessed = [""]
+
+    while not is_word_guessed(secret_word, letters_guessed):
+        print(get_available_letters(letters_guessed))
+        current_guess = input("Please guess a letter. ")
+        letters_guessed.append(current_guess)
+        inWord = False
+        for letter in secret_word:
+            if current_guess == letter:
+                inWord = True
+        if inWord:
+            print("Good guess!")
+        else: print("Sorry, try again.")
+        print("Available letters:", get_guessed_word(secret_word, letters_guessed))
 
 
 
@@ -220,7 +244,8 @@ if __name__ == "__main__":
     # To test part 2, comment out the pass line above and
     # uncomment the following two lines.
     
-    secret_word = choose_word(wordlist)
+    #secret_word = choose_word(wordlist)
+    secret_word = "catholic"
     hangman(secret_word)
 
 ###############
