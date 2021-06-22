@@ -85,10 +85,10 @@ def get_guessed_word(secret_word, letters_guessed):
     for i in range(0, len(secret_word)):
         output += "_ "
     for item in letters_guessed:
-        for letter in secret_word:
+        for index in range(0, len(secret_word)):
+            letter = secret_word[index]
             if item == letter:
                 # print(letter, secret_word.find(letter))
-                index = secret_word.find(letter)
                 if index != len(secret_word):
                     output = output[0: 2 * index] + letter + output[2 * index + 1: len(output)]
                 else:
