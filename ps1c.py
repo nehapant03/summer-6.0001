@@ -27,7 +27,7 @@ while abs(current_savings - target) > threshold and guess < 9999:
 
     if current_savings < target - threshold:
         low = guess
-    elif current_savings > target + threshold: # current rate saves too much money
+    elif current_savings > target + threshold:  # current rate saves too much money
         high = guess
     else:
         print("Best savings rate: " + str(guess / 10000))
@@ -36,7 +36,7 @@ while abs(current_savings - target) > threshold and guess < 9999:
     steps += 1
     current_savings = 0
 
-if guess < 9999: # if loop ended with valid rate
+if guess < 9999:  # if loop ended with valid rate
     print("Steps in bisection search:", steps)
 else:
     print("It is not possible to pay the down payment in three years.")
