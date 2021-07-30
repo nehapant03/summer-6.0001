@@ -88,11 +88,7 @@ def get_guessed_word(secret_word, letters_guessed):
         for index in range(0, len(secret_word)):
             letter = secret_word[index]
             if item == letter:
-                # print(letter, secret_word.find(letter))
-                if index != len(secret_word):
-                    output = output[0: 2 * index] + letter + output[2 * index + 1: len(output)]
-                else:
-                    output = output[0: 2 * index] + letter
+                output = output[0: 2 * index] + letter + output[2 * index + 1: len(output)]
     return output
 
 
@@ -142,13 +138,16 @@ def hangman(secret_word):
     print("")
     print("Welcome to the game Hangman!")
     print("I am thinking of a word that is", len(secret_word), "letters long.")
-    print(get_guessed_word(secret_word, [])) # prints out the blanks
-    print("You have", num_of_guesses, "guesses left.")
     letters_guessed = [""]
+    guessed = False
 
-    while not is_word_guessed(secret_word, letters_guessed):
-        print(get_available_letters(letters_guessed))
+    while not guessed:
+        print("----------")
+        print(get_guessed_word(secret_word, letters_guessed))  # prints out the blanks
+        print("You have", num_of_guesses, "guesses left.")
+        print("Available letters:", get_available_letters(letters_guessed))
         current_guess = input("Please guess a letter. ")
+        current_guess = current_guess.lower()
         letters_guessed.append(current_guess)
         inWord = False
         for letter in secret_word:
@@ -156,8 +155,11 @@ def hangman(secret_word):
                 inWord = True
         if inWord:
             print("Good guess!")
-        else: print("Sorry, try again.")
-        print("Available letters:", get_guessed_word(secret_word, letters_guessed))
+        else:
+            num_of_guesses -= 1
+            print("Sorry, try again.")
+        guessed = is_word_guessed(secret_word, letters_guessed)
+
 
 
 
