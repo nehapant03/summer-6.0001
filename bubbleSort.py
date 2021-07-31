@@ -1,5 +1,4 @@
 def bubbleSort(L):
-<<<<<<< HEAD
 
     cleanPass = False
     while not cleanPass:
