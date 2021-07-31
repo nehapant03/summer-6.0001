@@ -17,4 +17,14 @@ def merge(left, right):
         j += 1
     return output
 
-print(merge([1, 3, 5, 7], [2, 4, 6, 8]))
+# basically we're recursively calling merge()
+def mergeSort(L):
+    if len(L) < 2: # empty or single item list
+        return L[:] # a copy so everything's not weirdly linked
+    else:
+        middle = len(L) // 2 # python-speak for int(len(L))
+        left = mergeSort(L[:middle])
+        right = mergeSort(L[middle:])
+        return merge(left, right)
+
+print(mergeSort([12, -18, 13, -5, 10, 0, 7]))
